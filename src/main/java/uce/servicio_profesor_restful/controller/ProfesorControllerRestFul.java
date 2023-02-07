@@ -1,2 +1,42 @@
-package uce.servicio_profesor_restful.controller;public class ProfesorControllerRestFul {
+package uce.servicio_profesor_restful.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import uce.servicio_profesor_restful.model.Profesor;
+import uce.servicio_profesor_restful.service.IProfesorService;
+
+@RestController
+@RequestMapping("/profesores")
+public class ProfesorControllerRestFul {
+
+    @Autowired
+    private IProfesorService iProfesorService;
+
+    @PostMapping
+    public void insertarProfesor(Profesor profesor) {
+    }
+
+    @GetMapping("/{id}")
+    public Profesor buscarProfesor(@PathVariable("id")  Integer id) {
+        return this.iProfesorService.buscarProfesor(id);
+    }
+
+    @GetMapping("/cedula/{cedula}")
+    Profesor buscarProfesorPorCedula(@PathVariable("cedula") String cedula){
+        return this.iProfesorService.buscarProfesorPorCedula(cedula);
+    }
+
+    @PutMapping("/{id}")
+    public void actualizarProfesor(@PathVariable("id") Integer id, Profesor profesor) {
+    }
+
+    @PutMapping()
+    public void actualizarTodos(Profesor profesor) {
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarProfesor(@PathVariable("id") Integer id) {
+        this.iProfesorService.borrarProfesor(id);
+    }
+
 }
