@@ -13,7 +13,8 @@ public class ProfesorControllerRestFul {
     private IProfesorService iProfesorService;
 
     @PostMapping
-    public void insertarProfesor(Profesor profesor) {
+    public void insertarProfesor(@RequestBody Profesor profesor) {
+        this.iProfesorService.insertarProfesor(profesor);
     }
 
     @GetMapping("/{id}")
@@ -27,7 +28,9 @@ public class ProfesorControllerRestFul {
     }
 
     @PutMapping("/{id}")
-    public void actualizarProfesor(@PathVariable("id") Integer id, Profesor profesor) {
+    public void actualizarProfesor(@PathVariable("id") Integer id, @RequestBody Profesor profesor) {
+        profesor.setId(id);
+        this.iProfesorService.actualizarProfesor(profesor);
     }
 
     @PutMapping()
