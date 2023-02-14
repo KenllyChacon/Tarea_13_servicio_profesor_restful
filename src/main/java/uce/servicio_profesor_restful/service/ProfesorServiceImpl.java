@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import uce.servicio_profesor_restful.model.Profesor;
 import uce.servicio_profesor_restful.repository.IProfesorRepository;
 
+import java.util.List;
+
 @Service
 public class ProfesorServiceImpl implements IProfesorService{
 
@@ -35,6 +37,11 @@ public class ProfesorServiceImpl implements IProfesorService{
     @Override
     public Profesor buscarProfesorPorCedula(String cedula) {
         return this.profesorRepository.buscarProfesorPorCedula(cedula);
+    }
+
+    @Override
+    public List<Profesor> buscarTodos() {
+        return this.profesorRepository.buscarTodos();
     }
 }
 

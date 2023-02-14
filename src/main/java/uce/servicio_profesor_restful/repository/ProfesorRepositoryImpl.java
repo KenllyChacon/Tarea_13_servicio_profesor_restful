@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import uce.servicio_profesor_restful.model.Profesor;
 
+import java.util.List;
+
 @Repository
 @Transactional
 public class ProfesorRepositoryImpl implements IProfesorRepository {
@@ -41,6 +43,13 @@ public class ProfesorRepositoryImpl implements IProfesorRepository {
         TypedQuery<Profesor> miTypeQuery = (TypedQuery<Profesor>) this.entityManager.createQuery("select g from Profesor g where g.cedula =: cedula");
         miTypeQuery.setParameter("cedula", cedula);
         return miTypeQuery.getSingleResult();
+    }
+
+    @Override
+    public List<Profesor> buscarTodos() {
+        //Buscar Todos
+        TypedQuery<Profesor> miTypeQuery = this.entityManager.createQuery("select e from Profesor e",Profesor.class);
+        return miTypeQuery.getResultList();
     }
 
 }
